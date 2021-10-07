@@ -5,14 +5,12 @@
 
 import numpy as np
 from Beacon import Beacon
-
+from Variance import variance
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    beacon1 = Beacon("beacon1", -89, 2, 5, -50, 4)
-    print(beacon1.getDistance())
-    print(beacon1.getX())
-    print(beacon1.getY())
+    #Just put r before your normal string it converts normal string to raw string:
+    variance(r'C:\Users\tyalimbayev\OneDrive - ТОО Кар-тел\Рабочий стол\Positioning\PositionLogs\1_centerOfTheRoom')
 
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
