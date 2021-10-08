@@ -5,7 +5,8 @@ class Beacon:
     #https://www.sciencebuddies.org/science-fair-projects/science-fair/variance-and-standard-deviation
     #https://www.statisticshowto.com/probability-and-statistics/descriptive-statistics/sample-variance/
     Q = 22  # found experimentally, check Variance.py and references above for more info
-    R = Q / 2  # I don't know how reasonable this is. This is a process noise
+    R = Q / 2  # I don't know how reasonable this is. This is a process noise, i.e how uncertain our
+    # assumption of having no movement when in reality we might have some
     def __init__(self, id, rssi_meas, x, y, rssi_1m, N):
 
         self.id = id
