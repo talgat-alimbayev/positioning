@@ -29,4 +29,4 @@ def variance(dir):
 
 if __name__ == '__main__':
     #Just put r before your normal string it converts normal string to raw string:
-    variance(r'C:\Users\tyalimbayev\Desktop\Code\positioning\venv\logs\1_centerOfTheRoom')
+    variance(r'C:\Users\tyalimbayev\Desktop\Code\positioning\logs\1_centerOfTheRoom')
