@@ -23,6 +23,6 @@ class Beacon:
 
     def setRssi(self, rssi):
         self.rssi = rssi
-        self.kalmanFIlter()
+        self.kalmanFilter()
 
     # def KalmanFilter(self):

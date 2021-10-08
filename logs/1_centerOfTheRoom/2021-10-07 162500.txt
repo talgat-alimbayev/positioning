@@ -1,0 +1,15 @@
+{
+    "beaconList": ["fda50693a4e24fb1afcfac233f5b8a1227114cb9", "ab8190d5d11e4941acc4ac233f5b8a1327114cb9", "fda50693a4e24fb1afcfac233f5b898f27114cb9", "fda50693a4e24fb1afcfac233f5b8a0d27114cb9", "fda50693a4e24fb1afcfac233f5b8a0927114cb9", "fda50693a4e24fb1afcfac233f5b898b27114cb9", "ab8190d5d11e4941acc4ac233f5b88bd27114cb9", "ab8190d5d11e4941acc4ac233f5b8a0427114cb9"],
+    "beacons": {
+        "fda50693a4e24fb1afcfac233f5b8a1227114cb9": -65,
+        "ab8190d5d11e4941acc4ac233f5b8a1327114cb9": -68,
+        "fda50693a4e24fb1afcfac233f5b898f27114cb9": -71,
+        "fda50693a4e24fb1afcfac233f5b8a0d27114cb9": -78,
+        "fda50693a4e24fb1afcfac233f5b8a0927114cb9": -88,
+        "fda50693a4e24fb1afcfac233f5b898b27114cb9": -61,
+        "ab8190d5d11e4941acc4ac233f5b88bd27114cb9": -68,
+        "ab8190d5d11e4941acc4ac233f5b8a0427114cb9": -64
+    },
+    "deviceName": "359633109461298",
+    "ts": "1073014645001"
+}
