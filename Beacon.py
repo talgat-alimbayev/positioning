@@ -16,29 +16,33 @@ class Beacon:
         self.N = N #N is a path loss coefficient. The more obstacles there are, the larger it will be
         self.d = 10 ** ( (rssi_1m - rssi) / (10*N) )
 
-
         self.rssi_est = self.rssi_1m
         self.rssi_pred = 0
         self.sigma_est = 0  #covariance of estimation
         self.sigma_pred = 0 #covariance of prediction
         self.K = 0 #kalman gain
 
-
-
     def getX(self):
         return self.x
+
     def getY(self):
         return self.y
+
     def getDistance(self):
         return self.d
+
     def getN(self):
         return self.N
 
     def setRssi(self, rssi_meas):
-        self.rssi = rssi
-        self.kalmanFilter(rssi_meas)
+        self.rssi_meas = rssi_meas
 
-    def KalmanFilter(self,rssi_meas):
+    def KalmanFilter(self):
         self.rssi_pred = self.rssi_est
         self.sigma_pred = self.sigma_est + Beacon.R
-        self.K = self.sigma_pred / (self.)
+        self.K = self.sigma_pred / (self.sigma_pred + Beacon.Q)
+        self.rssi_est = self.rssi_pred + self.K * ( self.rssi_meas - self.rssi_pred )
+        self.sigma_est = self.sigma_pred - self.K * self.sigma_pred
+
+    def calculateDistance(self):
+        self.d = 10 ** ((self.rssi_1m - self.rssi_est) / (10 * N))
