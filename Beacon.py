@@ -5,17 +5,20 @@ class Beacon:
     #https://www.sciencebuddies.org/science-fair-projects/science-fair/variance-and-standard-deviation
     #https://www.statisticshowto.com/probability-and-statistics/descriptive-statistics/sample-variance/
     Q = 22  # found experimentally, check Variance.py and references above for more info
-    R = Q / 2  # I don't know how reasonable this is. This is a process noise, i.e how uncertain our
+    # R = 0.1 # very little noise goes through but the filter will be sluggish
+    # R = 1 # much more noise goes through, the filter becomes more responsive to the movement of a person
+    R = 0.5  # middle ground between being sluggish and too noisy
+    # R = Q / 16  # I don't know how reasonable this is. This is a process noise, i.e how uncertain our
     # assumption of having no movement when in reality we might have some
-    def __init__(self, id, rssi_meas, x, y, rssi_1m, N):
+    def __init__(self, id, x, y, rssi_1m, N):
 
         self.id = id
-        self.rssi_meas = rssi_meas
+        self.rssi_meas = rssi_1m # rssi measurement is initialized as rssi at 1m
         self.x = x
         self.y = y
         self.rssi_1m = rssi_1m #RSSI at one meter distance, needs to be calibrated for each beacon
         self.N = N #N is a path loss coefficient. The more obstacles there are, the larger it will be
-        self.d = 10 ** ( (rssi_1m - rssi) / (10*N) )
+        self.d = 10 ** ( (rssi_1m - rssi_1m) / (10*N) )
 
         self.rssi_est = self.rssi_1m
         self.rssi_pred = 0
@@ -35,6 +38,9 @@ class Beacon:
     def getN(self):
         return self.N
 
+    def getRssiEst(self):
+        return self.rssi_est
+
     def setRssi(self, rssi_meas):
         self.rssi_meas = rssi_meas
 
@@ -46,4 +52,4 @@ class Beacon:
         self.sigma_est = self.sigma_pred - self.K * self.sigma_pred
 
     def calculateDistance(self):
-        self.d = 10 ** ((self.rssi_1m - self.rssi_est) / (10 * N))
+        self.d = 10 ** ((self.rssi_1m - self.rssi_est) / (10 * self.N))
