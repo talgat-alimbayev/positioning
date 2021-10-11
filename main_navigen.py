@@ -50,39 +50,59 @@ if __name__ == '__main__':
         d = f.read()
         data = json.loads(d)
 
-        beacon1.setRssi(data['beacons'][beacon1.getID()])
-        beacon2.setRssi(data['beacons'][beacon2.getID()])
-        beacon3.setRssi(data['beacons'][beacon3.getID()])
-        beacon4.setRssi(data['beacons'][beacon4.getID()])
-        beacon5.setRssi(data['beacons'][beacon5.getID()])
-        beacon6.setRssi(data['beacons'][beacon6.getID()])
-        beacon7.setRssi(data['beacons'][beacon7.getID()])
-        beacon8.setRssi(data['beacons'][beacon8.getID()])
+        normCoef = 0
 
-        beacon1.calculateDistance()
-        beacon2.calculateDistance()
-        beacon3.calculateDistance()
-        beacon4.calculateDistance()
-        beacon5.calculateDistance()
-        beacon6.calculateDistance()
-        beacon7.calculateDistance()
-        beacon8.calculateDistance()
+        for beacon in Beacon_navigen:
+            beacon.setRssi(data['beacons'][beacon.getID()])
+            beacon.calculateDistance()
+            normCoef += 1/np.abs(beacon.getDistance())
 
-        normCoef = 1/np.abs(beacon1.getDistance()) + 1/np.abs(beacon2.getDistance()) + 1/np.abs(beacon3.getDistance()) + 1 / np.abs(beacon4.getDistance()) + 1/np.abs(beacon5.getDistance()) + 1/np.abs(beacon6.getDistance()) + 1 / np.abs(beacon7.getDistance()) + 1/np.abs(beacon8.getDistance())
         Beacon_navigen.setNormCoef(normCoef)
 
-        beacon1.setWeight(1 / np.abs(beacon1.getDistance() * Beacon_navigen.getNormCoef()))
-        beacon2.setWeight(1 / np.abs(beacon2.getDistance() * Beacon_navigen.getNormCoef()))
-        beacon3.setWeight(1 / np.abs(beacon3.getDistance() * Beacon_navigen.getNormCoef()))
-        beacon4.setWeight(1 / np.abs(beacon4.getDistance() * Beacon_navigen.getNormCoef()))
-        beacon5.setWeight(1 / np.abs(beacon5.getDistance() * Beacon_navigen.getNormCoef()))
-        beacon6.setWeight(1 / np.abs(beacon6.getDistance() * Beacon_navigen.getNormCoef()))
-        beacon7.setWeight(1 / np.abs(beacon7.getDistance() * Beacon_navigen.getNormCoef()))
-        beacon8.setWeight(1 / np.abs(beacon8.getDistance() * Beacon_navigen.getNormCoef()))
+        xPosIntermediate = 0
+        yPosIntermediate = 0
 
-        xPos = np.append(xPos, beacon1.getWeight() * beacon1.getX() + beacon2.getWeight() * beacon2.getX() + beacon3.getWeight() * beacon3.getX() + beacon4.getWeight() * beacon4.getX() + beacon5.getWeight() * beacon5.getX() + beacon6.getWeight() * beacon6.getX() + beacon7.getWeight() * beacon7.getX() + beacon8.getWeight() * beacon8.getX())
+        for beacon in Beacon_navigen:
+            beacon.setWeight(1 / np.abs(beacon.getDistance() * Beacon_navigen.getNormCoef()))
+            xPosIntermediate += beacon.getWeight() * beacon.getX()
+            yPosIntermediate += beacon.getWeight() * beacon.getY()
 
-        yPos = np.append(yPos, beacon1.getWeight() * beacon1.getY() + beacon2.getWeight() * beacon2.getY() + beacon3.getWeight() * beacon3.getY() + beacon4.getWeight() * beacon4.getY() + beacon5.getWeight() * beacon5.getY() + beacon6.getWeight() * beacon6.getY() + beacon7.getWeight() * beacon7.getY() + beacon8.getWeight() * beacon8.getY())
+        xPos = np.append(xPos, xPosIntermediate)
+        yPos = np.append(yPos, yPosIntermediate)
+
+        # beacon1.setRssi(data['beacons'][beacon1.getID()])
+        # beacon2.setRssi(data['beacons'][beacon2.getID()])
+        # beacon3.setRssi(data['beacons'][beacon3.getID()])
+        # beacon4.setRssi(data['beacons'][beacon4.getID()])
+        # beacon5.setRssi(data['beacons'][beacon5.getID()])
+        # beacon6.setRssi(data['beacons'][beacon6.getID()])
+        # beacon7.setRssi(data['beacons'][beacon7.getID()])
+        # beacon8.setRssi(data['beacons'][beacon8.getID()])
+        #
+        # beacon1.calculateDistance()
+        # beacon2.calculateDistance()
+        # beacon3.calculateDistance()
+        # beacon4.calculateDistance()
+        # beacon5.calculateDistance()
+        # beacon6.calculateDistance()
+        # beacon7.calculateDistance()
+        # beacon8.calculateDistance()
+        #
+        # normCoef = 1/np.abs(beacon1.getDistance()) + 1/np.abs(beacon2.getDistance()) + 1/np.abs(beacon3.getDistance()) + 1 / np.abs(beacon4.getDistance()) + 1/np.abs(beacon5.getDistance()) + 1/np.abs(beacon6.getDistance()) + 1 / np.abs(beacon7.getDistance()) + 1/np.abs(beacon8.getDistance())
+        # Beacon_navigen.setNormCoef(normCoef)
+        #
+        # beacon1.setWeight(1 / np.abs(beacon1.getDistance() * Beacon_navigen.getNormCoef()))
+        # beacon2.setWeight(1 / np.abs(beacon2.getDistance() * Beacon_navigen.getNormCoef()))
+        # beacon3.setWeight(1 / np.abs(beacon3.getDistance() * Beacon_navigen.getNormCoef()))
+        # beacon4.setWeight(1 / np.abs(beacon4.getDistance() * Beacon_navigen.getNormCoef()))
+        # beacon5.setWeight(1 / np.abs(beacon5.getDistance() * Beacon_navigen.getNormCoef()))
+        # beacon6.setWeight(1 / np.abs(beacon6.getDistance() * Beacon_navigen.getNormCoef()))
+        # beacon7.setWeight(1 / np.abs(beacon7.getDistance() * Beacon_navigen.getNormCoef()))
+        # beacon8.setWeight(1 / np.abs(beacon8.getDistance() * Beacon_navigen.getNormCoef()))
+        #
+        # xPos = np.append(xPos, beacon1.getWeight() * beacon1.getX() + beacon2.getWeight() * beacon2.getX() + beacon3.getWeight() * beacon3.getX() + beacon4.getWeight() * beacon4.getX() + beacon5.getWeight() * beacon5.getX() + beacon6.getWeight() * beacon6.getX() + beacon7.getWeight() * beacon7.getX() + beacon8.getWeight() * beacon8.getX())
+        #
+        # yPos = np.append(yPos, beacon1.getWeight() * beacon1.getY() + beacon2.getWeight() * beacon2.getY() + beacon3.getWeight() * beacon3.getY() + beacon4.getWeight() * beacon4.getY() + beacon5.getWeight() * beacon5.getY() + beacon6.getWeight() * beacon6.getY() + beacon7.getWeight() * beacon7.getY() + beacon8.getWeight() * beacon8.getY())
 
     plt.plot(xPos, yPos)
     plt.plot(beacon1.getX(), beacon1.getY(), marker='o', ms=20)
@@ -97,8 +117,8 @@ if __name__ == '__main__':
 
     plt.show()
 
-    for n in Beacon_navigen:
-        print(n.getID())
+    # for n in Beacon_navigen:
+    #     print(n.getID())
 
 
 

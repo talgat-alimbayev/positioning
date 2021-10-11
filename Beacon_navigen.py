@@ -1,11 +1,11 @@
 import numpy as np
-class IterRegistry(type):
-    def __iter__(cls):
-        return iter(cls._registry)
-class Beacon_navigen(metaclass=IterRegistry):
-    __metaclass__ = IterRegistry
-    _registry = []
-    normCoef = 0
+class IterRegistry(type): #this line is needed to make the class iterable
+    def __iter__(cls): #this line is needed to make the class iterable
+        return iter(cls._registry) #this line is needed to make the class iterable
+class Beacon_navigen(metaclass=IterRegistry): #metaclass=IterRegistry is needed to make the class iterable
+    __metaclass__ = IterRegistry #this line is needed to make the class iterable
+    _registry = []  #this line is needed to make the class iterable
+    normCoef = 0    #this line is needed to make the class iterable
 
     def __init__(self, id, x, y, rssi_1m, N):
         self._registry.append(self)
