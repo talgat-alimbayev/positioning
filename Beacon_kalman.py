@@ -1,6 +1,6 @@
 import numpy as np
 
-class Beacon:
+class Beacon_kalman:
     #https://www.wouterbulten.nl/blog/tech/kalman-filters-explained-removing-noise-from-rssi-signals/
     #https://www.sciencebuddies.org/science-fair-projects/science-fair/variance-and-standard-deviation
     #https://www.statisticshowto.com/probability-and-statistics/descriptive-statistics/sample-variance/
@@ -46,8 +46,8 @@ class Beacon:
 
     def KalmanFilter(self):
         self.rssi_pred = self.rssi_est
-        self.sigma_pred = self.sigma_est + Beacon.R
-        self.K = self.sigma_pred / (self.sigma_pred + Beacon.Q)
+        self.sigma_pred = self.sigma_est + Beacon_kalman.R
+        self.K = self.sigma_pred / (self.sigma_pred + Beacon_kalman.Q)
         self.rssi_est = self.rssi_pred + self.K * ( self.rssi_meas - self.rssi_pred )
         self.sigma_est = self.sigma_pred - self.K * self.sigma_pred
 
