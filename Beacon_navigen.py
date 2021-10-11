@@ -1,10 +1,15 @@
 import numpy as np
-
-class Beacon_navigen(object):
-
+class IterRegistry(type):
+    def __iter__(cls):
+        return iter(cls._registry)
+class Beacon_navigen(metaclass=IterRegistry):
+    __metaclass__ = IterRegistry
+    _registry = []
     normCoef = 0
 
     def __init__(self, id, x, y, rssi_1m, N):
+        self._registry.append(self)
+
         self.id = id
 
         self.x = x

@@ -97,7 +97,8 @@ if __name__ == '__main__':
 
     plt.show()
 
-
+    for n in Beacon_navigen:
+        print(n.getID())
 
 
 
