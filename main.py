@@ -27,9 +27,6 @@ if __name__ == '__main__':
     rssi_before_KF = np.array([])
     rssi_after_KF = np.array([])
 
-    distance_before_KF = np.array([])
-    distance_after_KF = np.array([])
-
     x_axis = np.array([])
 
     for i in range(N):
@@ -45,9 +42,6 @@ if __name__ == '__main__':
 
         rssi_before_KF = np.append(rssi_before_KF, x)
         rssi_after_KF = np.append(rssi_after_KF, beacon_on_cabinet25.getRssiEst())
-
-        # distance_before_KF = np.append(distance_before_KF, 10 ** ( (rssi_1m - x) / (10*N_env) ))
-        # distance_after_KF = np.append(distance_after_KF, beacon_on_cabinet25.getDistance())
 
         x_axis = np.append(x_axis, i)
 
