@@ -32,18 +32,6 @@ if __name__ == '__main__':
     beacon7 = Beacon_navigen('fda50693a4e24fb1afcfac233f5b898f27114cb9', 3, 0, -60, 4)
     beacon8 = Beacon_navigen('fda50693a4e24fb1afcfac233f5b8a0d27114cb9', 1.6, 0, -60, 4)
 
-    # list_of_beacons = [beacon1, beacon2, beacon3, beacon4, beacon5, beacon6, beacon7, beacon8]
-
-
-    # list_of_beacons = ['fda50693a4e24fb1afcfac233f5b8a1227114cb9',
-    #                    'fda50693a4e24fb1afcfac233f5b898b27114cb9',
-    #                    'ab8190d5d11e4941acc4ac233f5b8a1327114cb9',
-    #                    'ab8190d5d11e4941acc4ac233f5b8a0427114cb9',
-    #                    'ab8190d5d11e4941acc4ac233f5b88bd27114cb9',
-    #                    'fda50693a4e24fb1afcfac233f5b8a0927114cb9',
-    #                    'fda50693a4e24fb1afcfac233f5b898f27114cb9',
-    #                    'fda50693a4e24fb1afcfac233f5b8a0d27114cb9']
-
     for i in range(N):
         os.path.join(dir, list[i])
         f = open(os.path.join(dir, list[i]), "r")
@@ -70,6 +58,8 @@ if __name__ == '__main__':
         xPos = np.append(xPos, xPosIntermediate)
         yPos = np.append(yPos, yPosIntermediate)
 
+        # I manually wrote everything above first, so whatever is below is the same as what is written above
+        #
         # beacon1.setRssi(data['beacons'][beacon1.getID()])
         # beacon2.setRssi(data['beacons'][beacon2.getID()])
         # beacon3.setRssi(data['beacons'][beacon3.getID()])
