@@ -23,6 +23,27 @@ if __name__ == '__main__':
     xPos = np.array([])
     yPos = np.array([])
 
+    beaconList:{
+                 "ab8190d5d11e4941acc4ac233f5b8a0427114cb9", URL:4, (0,4190032925603682, 0,4496753246753247)
+                 "ab8190d5d11e4941acc4ac233f5b8a1327114cb9", URL:3, (0,5999896213914773, 0,5930343746672849)
+                "fda50693a4e24fb1afcfac233f5b8a0927114cb9",
+                 "ab8190d5d11e4941acc4ac233f5b88bd27114cb9", URL:3, (0,41919329135400984, 0,580019545143734)
+                 "fda50693a4e24fb1afcfac233f5b8a1227114cb9", URL:4, (0,6084157398821785, 0,5941558441558441)
+                 "fda50693a4e24fb1afcfac233f5b898f27114cb9", URL:3, (0,6018766125648648, 0,4728509241132918)
+                 "fda50693a4e24fb1afcfac233f5b8a0d27114cb9", URL:4, (0,3856973899775685, 0,5746541109949017)
+                 "fda50693a4e24fb1afcfac233f5b898b27114cb9", URL:4, (0,6329895756015409, 0,4515276185258065)
+    }
+    beacons: {
+            "ab8190d5d11e4941acc4ac233f5b8a0427114cb9": -40,
+            "ab8190d5d11e4941acc4ac233f5b8a1327114cb9": -46,
+            "fda50693a4e24fb1afcfac233f5b8a0927114cb9": -46,
+            "ab8190d5d11e4941acc4ac233f5b88bd27114cb9": -43,
+            "fda50693a4e24fb1afcfac233f5b8a1227114cb9": -55,
+            "fda50693a4e24fb1afcfac233f5b898f27114cb9": -70,
+            "fda50693a4e24fb1afcfac233f5b8a0d27114cb9": -78,
+            "fda50693a4e24fb1afcfac233f5b898b27114cb9": -67
+    }
+
     beacon1 = Beacon_navigen('fda50693a4e24fb1afcfac233f5b8a1227114cb9', 0, 0, -60, 4)
     beacon2 = Beacon_navigen('fda50693a4e24fb1afcfac233f5b898b27114cb9', -0.7, 3.4, -60, 4)
     beacon3 = Beacon_navigen('ab8190d5d11e4941acc4ac233f5b8a1327114cb9', 0, 4.8, -60, 4)

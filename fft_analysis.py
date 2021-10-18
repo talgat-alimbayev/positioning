@@ -1,7 +1,9 @@
+
 # This is a sample Python script.
 import os
 import json
 import matplotlib.pyplot as plt
+from scipy.fft import fft, fftfreq
 
 import numpy as np
 from Beacon_kalman import Beacon_kalman
@@ -45,12 +47,23 @@ if __name__ == '__main__':
 
         x_axis = np.append(x_axis, i)
 
-    plt.plot(x_axis, rssi_before_KF)
-    plt.plot(x_axis, rssi_after_KF)
-    plt.legend(["RSSI before KF", "RSSI after KF"])
-    plt.title('RSSI readings from stationary beacon')
-    plt.show()
+    # plt.plot(x_axis, rssi_before_KF)
+    # plt.plot(x_axis, rssi_after_KF)
+    # plt.legend(["RSSI before KF", "RSSI after KF"])
+    # plt.title('RSSI readings from stationary beacon')
+    # plt.show()
 
+SAMPLE_RATE = 0.1
+DURATION = 510
+N = SAMPLE_RATE * DURATION
+
+yf = fft(rssi_before_KF)
+xf = fftfreq(51, 1 / SAMPLE_RATE)
+
+
+
+plt.plot(xf, np.abs(yf))
+plt.show()
 
 
 
