@@ -90,9 +90,9 @@ if __name__ == '__main__':
     # plt.plot(beacon6.getX(), beacon6.getY(), marker='o', ms=20)
     # plt.plot(beacon7.getX(), beacon7.getY(), marker='o', ms=20)
     # plt.plot(beacon8.getX(), beacon8.getY(), marker='o', ms=20)
-    plt.legend(['tracker','window', 'in cupboard', 'on cabinet', 'locker', 'locker', 'locker', 'window', 'window'])
-
-    plt.show()
+    # plt.legend(['tracker','window', 'in cupboard', 'on cabinet', 'locker', 'locker', 'locker', 'window', 'window'])
+    #
+    # plt.show()
 
 
 
