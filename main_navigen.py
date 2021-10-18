@@ -24,14 +24,14 @@ if __name__ == '__main__':
     yPos = np.array([])
 
     beaconList:{
-                 "ab8190d5d11e4941acc4ac233f5b8a0427114cb9", URL:4, (0,4190032925603682, 0,4496753246753247)
-                 "ab8190d5d11e4941acc4ac233f5b8a1327114cb9", URL:3, (0,5999896213914773, 0,5930343746672849)
-                "fda50693a4e24fb1afcfac233f5b8a0927114cb9",
-                 "ab8190d5d11e4941acc4ac233f5b88bd27114cb9", URL:3, (0,41919329135400984, 0,580019545143734)
-                 "fda50693a4e24fb1afcfac233f5b8a1227114cb9", URL:4, (0,6084157398821785, 0,5941558441558441)
-                 "fda50693a4e24fb1afcfac233f5b898f27114cb9", URL:3, (0,6018766125648648, 0,4728509241132918)
-                 "fda50693a4e24fb1afcfac233f5b8a0d27114cb9", URL:4, (0,3856973899775685, 0,5746541109949017)
-                 "fda50693a4e24fb1afcfac233f5b898b27114cb9", URL:4, (0,6329895756015409, 0,4515276185258065)
+                 "ab8190d5d11e4941acc4ac233f5b8a0427114cb9",
+                 "ab8190d5d11e4941acc4ac233f5b8a1327114cb9",
+                 "fda50693a4e24fb1afcfac233f5b8a0927114cb9",
+                 "ab8190d5d11e4941acc4ac233f5b88bd27114cb9",
+                 "fda50693a4e24fb1afcfac233f5b8a1227114cb9",
+                 "fda50693a4e24fb1afcfac233f5b898f27114cb9",
+                 "fda50693a4e24fb1afcfac233f5b8a0d27114cb9",
+                 "fda50693a4e24fb1afcfac233f5b898b27114cb9",
     }
     beacons: {
             "ab8190d5d11e4941acc4ac233f5b8a0427114cb9": -40,
@@ -79,7 +79,7 @@ if __name__ == '__main__':
         xPos = np.append(xPos, xPosIntermediate)
         yPos = np.append(yPos, yPosIntermediate)
 
-        # I manually wrote everything above first, so whatever is below is the same as what is written above
+        # I manually wrote everything below first, so whatever is below is the same as what is written above
         #
         # beacon1.setRssi(data['beacons'][beacon1.getID()])
         # beacon2.setRssi(data['beacons'][beacon2.getID()])
