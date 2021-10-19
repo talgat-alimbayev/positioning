@@ -23,6 +23,7 @@ if __name__ == '__main__':
     xPos = np.array([])
     yPos = np.array([])
 
+    # the first manual debugging
     # beaconList:{
     #              "ab8190d5d11e4941acc4ac233f5b8a0427114cb9", URL:4, (0,4190032925603682, 0,4496753246753247)
     #              "ab8190d5d11e4941acc4ac233f5b8a1327114cb9", URL:3, (0,5999896213914773, 0,5930343746672849)
@@ -32,20 +33,41 @@ if __name__ == '__main__':
     #              "fda50693a4e24fb1afcfac233f5b8a0d27114cb9", URL:4, (0,3856973899775685, 0,5746541109949017)
     #              "fda50693a4e24fb1afcfac233f5b898b27114cb9", URL:4, (0,6329895756015409, 0,4515276185258065)
     # }
-    beacons= {
-            "ab8190d5d11e4941acc4ac233f5b8a0427114cb9": -40,
-            "ab8190d5d11e4941acc4ac233f5b8a1327114cb9": -46,
-            "ab8190d5d11e4941acc4ac233f5b88bd27114cb9": -43,
-            "fda50693a4e24fb1afcfac233f5b8a1227114cb9": -55,
-            "fda50693a4e24fb1afcfac233f5b898f27114cb9": -70,
-            "fda50693a4e24fb1afcfac233f5b8a0d27114cb9": -78,
-            "fda50693a4e24fb1afcfac233f5b898b27114cb9": -67
+    # beacons= {
+    #         "ab8190d5d11e4941acc4ac233f5b8a0427114cb9": -40,
+    #         "ab8190d5d11e4941acc4ac233f5b8a1327114cb9": -46,
+    #         "ab8190d5d11e4941acc4ac233f5b88bd27114cb9": -43,
+    #         "fda50693a4e24fb1afcfac233f5b8a1227114cb9": -55,
+    #         "fda50693a4e24fb1afcfac233f5b898f27114cb9": -70,
+    #         "fda50693a4e24fb1afcfac233f5b8a0d27114cb9": -78,
+    #         "fda50693a4e24fb1afcfac233f5b898b27114cb9": -67
+    # }
+    #second manual debugging
+
+    # beaconList : ["ab8190d5d11e4941acc4ac233f5b8a0427114cb9", URL:4, (0,4190032925603682, 0,4496753246753247)
+    #                "ab8190d5d11e4941acc4ac233f5b8a1327114cb9", URL:3, (0,5999896213914773, 0,5930343746672849)
+    #                "ab8190d5d11e4941acc4ac233f5b88bd27114cb9", URL:3, (0,41919329135400984, 0,580019545143734)
+    #                "fda50693a4e24fb1afcfac233f5b8a1227114cb9", URL:4, (0,6084157398821785, 0,5941558441558441)
+    #                "fda50693a4e24fb1afcfac233f5b898f27114cb9", URL:3, (0,6018766125648648, 0,4728509241132918)
+    #                "fda50693a4e24fb1afcfac233f5b8a0d27114cb9", URL:4, (0,3856973899775685, 0,5746541109949017)
+    #                "fda50693a4e24fb1afcfac233f5b898b27114cb9", URL:4, (0,6329895756015409, 0,4515276185258065)]
+
+    beacons = {
+        "ab8190d5d11e4941acc4ac233f5b88bd27114cb9": -92,
+        "fda50693a4e24fb1afcfac233f5b8a0927114cb9": -65,
+        "fda50693a4e24fb1afcfac233f5b8a0d27114cb9": -55,
+        "fda50693a4e24fb1afcfac233f5b8a1227114cb9": -54,
+        "ab8190d5d11e4941acc4ac233f5b8a1327114cb9": -66,
+        "fda50693a4e24fb1afcfac233f5b898b27114cb9": -56,
+        "ab8190d5d11e4941acc4ac233f5b8a0427114cb9": -64,
+        "fda50693a4e24fb1afcfac233f5b898f27114cb9": -61
     }
 
-    beacon1 = Beacon_navigen('ab8190d5d11e4941acc4ac233f5b8a1327114cb9', 0.5999896213914773, 0.5930343746672849, -48, 3.5)
-    beacon2 = Beacon_navigen('ab8190d5d11e4941acc4ac233f5b88bd27114cb9', 0.41919329135400984, 0.580019545143734, -51, 3.5)
-    beacon3 = Beacon_navigen('fda50693a4e24fb1afcfac233f5b898f27114cb9', 0.6018766125648648, 0.4728509241132918, -50, 3.5)
-    # beacon4 = Beacon_navigen('ab8190d5d11e4941acc4ac233f5b8a0427114cb9', 5.9, 5.2, -60, 4)
+
+    beacon1 = Beacon_navigen('ab8190d5d11e4941acc4ac233f5b8a0427114cb9', 0.4190032925603682, 0.4496753246753247, -49, 3.5)
+    beacon2 = Beacon_navigen('fda50693a4e24fb1afcfac233f5b8a1227114cb9', 0.6084157398821785, 0.5941558441558441, -44, 3.5)
+    beacon3 = Beacon_navigen('fda50693a4e24fb1afcfac233f5b8a0d27114cb9', 0.3856973899775685, 0.5746541109949017, -48, 3.5)
+    beacon4 = Beacon_navigen('fda50693a4e24fb1afcfac233f5b898b27114cb9', 0.6329895756015409, 0.4515276185258065, -50, 3.5)
     # beacon5 = Beacon_navigen('ab8190d5d11e4941acc4ac233f5b88bd27114cb9', 5.9, 3.2, -60, 4)
     # beacon6 = Beacon_navigen('fda50693a4e24fb1afcfac233f5b8a0927114cb9', 5.9, 1, -60, 4)
     # beacon7 = Beacon_navigen('fda50693a4e24fb1afcfac233f5b898f27114cb9', 3, 0, -60, 4)
@@ -64,6 +86,7 @@ if __name__ == '__main__':
         beacon.setRssi(beacons[beacon.getID()])
         beacon.calculateDistance()
         normCoef += 1/np.abs(beacon.getDistance())
+        print(normCoef)
 
     Beacon_navigen.setNormCoef(normCoef)
 
@@ -79,6 +102,11 @@ if __name__ == '__main__':
     yPos = np.append(yPos, yPosIntermediate)
 
     print(xPos, yPos)
+    print(normCoef)
+    print(normCoef/0.02)
+    print(beacon1.getID(), beacon1.getY(), beacon1.getY(), beacon1.getWeight(), beacon1.getRSSI())
+    print(beacon2.getID(), beacon2.getY(), beacon2.getY(), beacon2.getWeight(), beacon2.getRSSI())
+    print(beacon4.getID(), beacon4.getY(), beacon4.getY(), beacon4.getWeight(), beacon4.getRSSI())
     # plt.plot(xPos, yPos)
     # plt.plot(beacon1.getX(), beacon1.getY(), marker='o', ms=20)
     # plt.plot(beacon2.getX(), beacon2.getY(), marker='o', ms=20)
