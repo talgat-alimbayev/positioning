@@ -54,6 +54,21 @@ if __name__ == '__main__':
 
 
 
+    sum = 0.0
+    for i in range(rssi_after_KF.shape[0]):
+        x = rssi_after_KF[i]
+        sum = sum + x
+
+    mean = sum/N
+    variance = 0
+
+    for i in range(rssi_after_KF.shape[0]):
+        variance = variance + (rssi_after_KF[i] - mean) ** 2
+
+    variance = variance / (N - 1)
+    print("mean: ", mean)
+    print("variance: ", variance)
+
 
 
 
