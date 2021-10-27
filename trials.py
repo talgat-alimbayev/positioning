@@ -1,3 +1,4 @@
+import numpy as np
 class IterableCar(type):
     def __iter__(cls):
         return iter(cls.__name__)
@@ -15,3 +16,5 @@ if __name__=='__main__':
     car2 = Car('Toyota')
     for cars in Car:
         print (cars)
+
+    print(np.version.version)

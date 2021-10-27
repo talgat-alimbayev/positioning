@@ -1,5 +1,5 @@
 import numpy as np
-
+from numpy.linalg import inv
 class Tracker_KUIS:
     #https://www.kalmanfilter.net/covextrap.html
     #https://www.wouterbulten.nl/blog/tech/kalman-filters-explained-removing-noise-from-rssi-signals/
@@ -8,18 +8,15 @@ class Tracker_KUIS:
     Q = np.array([[1, 0], [0, 1]])  # sensor variance, needs to be obtained numerically for each tracker manufacturer
 
     R = np.array([[1, 0], [0, 1]])  # process noise,needs to be obtained numerically for each tracker manufacturer
-    def __init__(self, id, lat, long):
-        R is dependent on the time difference between GPS signals
+    def __init__(self, id, lat_init, long_init):
         self.id = id
-        self.coord_meas = np.array([lat, long])
-        self.coord_est = np.array([51.169392, 71.449074]) #estimated coordinates, these will be returned.
-        # The filter is initialized with coordinates of Astana
-        self.coord_pred = np.array([51.169392, 71.449074]) #predicted coordinates
+        self.coord_meas = np.array([0, 0])
+        self.coord_est = np.array([lat_init, long_init]) #estimated coordinates, these will be returned.
+        # The filter is initialized with the current GPS coordinates as initial estimates
+        self.coord_pred = np.array([lat_init, long_init]) #predicted coordinates
         self.sigma_est = np.array([[0, 0], [0, 0]])  #covariance of estimation
         self.sigma_pred = np.array([[0, 0], [0, 0]]) #covariance of prediction
         self.K = np.array([[0, 0], [0, 0]])  # kalman gain
-
-
 
     def getLat(self):
         return self.coord_est[0]
@@ -27,9 +24,15 @@ class Tracker_KUIS:
     def getLong(self):
         return self.coord_est[1]
 
+    def setMeas(self, lat, long):
+        self.coord_meas = np.array([lat, long])
+
+    def getMeas(self):
+        return self.coord_meas
+
     def KalmanFilter(self):
-        self.rssi_pred = self.rssi_est
-        self.sigma_pred = self.sigma_est + Beacon_kalman.R
-        self.K = self.sigma_pred / (self.sigma_pred + Beacon_kalman.Q)
-        self.rssi_est = self.rssi_pred + self.K * ( self.rssi_meas - self.rssi_pred )
-        self.sigma_est = self.sigma_pred - self.K * self.sigma_pred
+        self.coord_pred = self.coord_est
+        self.sigma_pred = self.sigma_est + Tracker_KUIS.R
+        self.K = self.sigma_pred @ inv(Tracker_KUIS.Q+self.sigma_pred)
+        self.coord_est = self.coord_pred + self.K @ (self.coord_meas - self.coord_pred)
+        self.sigma_est = (np.identity(2) - self.K) @ self.sigma_pred
