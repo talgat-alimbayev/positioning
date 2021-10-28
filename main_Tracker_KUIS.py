@@ -58,7 +58,9 @@ if __name__ == '__main__':
         data = json.loads(d)
         name = data["device_imei"]
         if name in trackers:
-            trackers[name] = Tracker_KUIS.setMeas(data["msg"]["sub_packet_1_data"]["values"]["latitude"], data["msg"]["sub_packet_1_data"]["values"]["longitude"])
+            # trackers[name] = Tracker_KUIS.setMeas(data["msg"]["sub_packet_1_data"]["values"]["latitude"], data["msg"]["sub_packet_1_data"]["values"]["longitude"])
+            trackers[name].setMeas(data["msg"]["sub_packet_1_data"]["values"]["latitude"],
+                                                  data["msg"]["sub_packet_1_data"]["values"]["longitude"])
             trackers[name].kalmanFilter()
         else:
             trackers[name] = Tracker_KUIS(name,data["msg"]["sub_packet_1_data"]["values"]["latitude"], data["msg"]["sub_packet_1_data"]["values"]["longitude"])
