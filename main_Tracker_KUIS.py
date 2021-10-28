@@ -1,4 +1,8 @@
 import json
+import os
+
+import matplotlib.pyplot as plt
+import numpy as np
 from Tracker_KUIS import Tracker_KUIS
 def jsonfy(s:str)->object:
     #This function normalizes the key of json without double quotes
@@ -6,12 +10,55 @@ def jsonfy(s:str)->object:
     return obj
 
 if __name__ == '__main__':
-    # data = '{sub_packet_1_data: {ts: 1635318881000,values: {sub_packet_type: '01', device_name: '1234', gps_sign: '3D fixed', latitude: 43.229044, longitude: 76.931784, BuiltIn_Battery_Voltage: '4.153', Motion_Status: 'Stationary', GSM_Anti_Jamming: 'Normal', Domestic_roaming: 'No', International_Roaming: 'No', Geo_fence_Alarm: 'No', Rest_Status: 'Yes', Privat_Status: 'No', Fiber_Optical_Status: 'Connected', Battery_Low_Voltage_Status: 'No', Battery_Under_Voltage_Status: 'No', Body_Gesture: 'Lie down', Charge_Status: 'Not Charge', Lock_Status: 'Lock Status', Ibeacon_Status: 'Exit' }  }  }'
-    # data = jsonfy(data)
-    # s = '{symbol:"sh600069",code:"600069",name:"Silver Pigeon Investment",trade:"3.160",pricechange:"-0.030",changepercent:"-0.940",buy:"3.160", Sell:"3.170",settlement:"3.190",open:"3.190",high:"3.210",low:"3.140",volume:3905810,amount:12388386,ticktime:"15:00:00",per: 79, pb: 2.416, mktcap: 513131.494704, nmc: 513131.494704, turnoverratio: 0.24053}'
-    # s = jsonfy(s)
-    f = open("C:/Users/tyalimbayev/Desktop/Code/positioning/test_message_KUIS.json", "r")
-    data = json.loads(f.read())
+    # ####################################################################################
+    # # Working filter code
+    # dir = r"C:\Users\tyalimbayev\OneDrive - ТОО Кар-тел\Рабочий стол\КУИС\Logs_variance"
+    # list = os.listdir(dir)
+    # N = len(list)  # number of samples to calculate variance
+    #
+    # f = open(os.path.join(dir, list[0]), "r")
+    # d = f.read()
+    # data = json.loads(d)
+    # name = data["device_imei"]
+    # lat_init = data["msg"]["sub_packet_1_data"]["values"]["latitude"]
+    # long_init = data["msg"]["sub_packet_1_data"]["values"]["longitude"]
+    # tracker = Tracker_KUIS(name, lat_init, long_init)
+    #
+    # latitude_nofilter = np.array([])
+    # latitude_filter = np.array([])
+    #
+    # longitude = np.array([])
+    # for i in range(N):
+    #     f = open( os.path.join(dir, list[i]), "r")
+    #     d = f.read()
+    #     data = json.loads(d)
+    #     tracker.setMeas(data["msg"]["sub_packet_1_data"]["values"]["latitude"], data["msg"]["sub_packet_1_data"]["values"]["longitude"])
+    #     tracker.kalmanFilter()
+    #     print(data["msg"]["sub_packet_1_data"]["values"]["latitude"],tracker.getLat())
+    #     latitude_nofilter = np.append(latitude_nofilter, data["msg"]["sub_packet_1_data"]["values"]["latitude"])
+    #     latitude_filter = np.append(latitude_filter, tracker.getLat())
+    #     longitude = np.append(longitude, tracker.getLong())
+    #
+    # plt.plot(latitude_filter)
+    # plt.plot(latitude_nofilter)
+    # plt.legend(["latitude filter", "latitude no filter"])
+    # plt.title('latitude')
+    # plt.show()
+    # # Working filter code
+    # ####################################################################################
+    #
+    dir = r"C:\Users\tyalimbayev\OneDrive - ТОО Кар-тел\Рабочий стол\КУИС\json_tests"
+    list = os.listdir(dir)
+    print(list)
+    N = len(list)  # number of samples to calculate variance
     trackers = {}
-    trackers[(data["sub_packet_1_data"]["values"]["device_name"]) ] = Tracker_KUIS( (data["sub_packet_1_data"]["values"]["device_name"]), (data["sub_packet_1_data"]["values"]["latitude"]), (data["sub_packet_1_data"]["values"]["longitude"]))
-    print(trackers["1234"].getMeas())
+    for i in range(N):
+        f = open(os.path.join(dir, list[i]), "r")
+        d = f.read()
+        data = json.loads(d)
+        name = data["device_imei"]
+        if name in trackers:
+            trackers[name] = Tracker_KUIS.setMeas(data["msg"]["sub_packet_1_data"]["values"]["latitude"], data["msg"]["sub_packet_1_data"]["values"]["longitude"])
+            trackers[name].kalmanFilter()
+        else:
+            trackers[name] = Tracker_KUIS(name,data["msg"]["sub_packet_1_data"]["values"]["latitude"], data["msg"]["sub_packet_1_data"]["values"]["longitude"])

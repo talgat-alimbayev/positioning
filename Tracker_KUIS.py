@@ -1,13 +1,11 @@
 import numpy as np
 from numpy.linalg import inv
 class Tracker_KUIS:
-    #https://www.kalmanfilter.net/covextrap.html
-    #https://www.wouterbulten.nl/blog/tech/kalman-filters-explained-removing-noise-from-rssi-signals/
-    #https://www.sciencebuddies.org/science-fair-projects/science-fair/variance-and-standard-deviation
-    #https://www.statisticshowto.com/probability-and-statistics/descriptive-statistics/sample-variance/
-    Q = np.array([[1, 0], [0, 1]])  # sensor variance, needs to be obtained numerically for each tracker manufacturer
-
-    R = np.array([[1, 0], [0, 1]])  # process noise,needs to be obtained numerically for each tracker manufacturer
+    #initialize with the GPS measurements
+    #use setMeas() and kalmanFilter() to set measurement and filter them using Kalman filter
+    Q = np.array([[0.00000001, 0], [0, 0.00000001]])  # sensor variance, was calculated for gosafe trackers
+    # R = np.array([[0.0000000001, 0], [0, 0.0000000001]])  # process noise
+    R = np.array([[0.0000000005, 0], [0, 0.0000000005]])  # process noise
     def __init__(self, id, lat_init, long_init):
         self.id = id
         self.coord_meas = np.array([0, 0])
@@ -30,7 +28,7 @@ class Tracker_KUIS:
     def getMeas(self):
         return self.coord_meas
 
-    def KalmanFilter(self):
+    def kalmanFilter(self):
         self.coord_pred = self.coord_est
         self.sigma_pred = self.sigma_est + Tracker_KUIS.R
         self.K = self.sigma_pred @ inv(Tracker_KUIS.Q+self.sigma_pred)
