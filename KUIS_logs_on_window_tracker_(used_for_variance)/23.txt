@@ -1,0 +1,32 @@
+{
+    "protocol_version": "28",
+    "batch_packet_status": "04",
+    "device_imei": "014869006140026",
+    "msg": {
+        "sub_packet_1_data": {
+            "ts": 1635390404000,
+            "values": {
+                "sub_packet_type": "01",
+                "device_name": "1234",
+                "gps_sign": "3D fixed",
+                "latitude": 43.229132,
+                "longitude": 76.932224,
+                "BuiltIn_Battery_Voltage": "3.750",
+                "Motion_Status": "Stationary",
+                "GSM_Anti_Jamming": "Normal",
+                "Domestic_roaming": "No",
+                "International_Roaming": "No",
+                "Geo_fence_Alarm": "No",
+                "Rest_Status": "Yes",
+                "Privat_Status": "No",
+                "Fiber_Optical_Status": "Disconnect",
+                "Battery_Low_Voltage_Status": "No",
+                "Battery_Under_Voltage_Status": "No",
+                "Body_Gesture": "Lie down",
+                "Charge_Status": "Not Charge",
+                "Lock_Status": "Lock Status",
+                "Ibeacon_Status": "Exit"
+            }
+        }
+    }
+}
