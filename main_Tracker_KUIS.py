@@ -53,14 +53,22 @@ if __name__ == '__main__':
     N = len(list)  # number of samples to calculate variance
     trackers = {}
     for i in range(N):
+        # this code is only to read files which we won't need on the server
         f = open(os.path.join(dir, list[i]), "r")
         d = f.read()
         data = json.loads(d)
+        # print("data before filterting", data)
+        # the above code is not needed on the server
         name = data["device_imei"]
+        latitude = data["msg"]["sub_packet_1_data"]["values"]["latitude"]
+        longitude = data["msg"]["sub_packet_1_data"]["values"]["longitude"]
         if name in trackers:
-            # trackers[name] = Tracker_KUIS.setMeas(data["msg"]["sub_packet_1_data"]["values"]["latitude"], data["msg"]["sub_packet_1_data"]["values"]["longitude"])
-            trackers[name].setMeas(data["msg"]["sub_packet_1_data"]["values"]["latitude"],
-                                                  data["msg"]["sub_packet_1_data"]["values"]["longitude"])
+            trackers[name].setMeas(latitude, longitude)
             trackers[name].kalmanFilter()
         else:
-            trackers[name] = Tracker_KUIS(name,data["msg"]["sub_packet_1_data"]["values"]["latitude"], data["msg"]["sub_packet_1_data"]["values"]["longitude"])
+            trackers[name] = Tracker_KUIS(name,latitude, longitude)
+
+        # changing latitude and longitude for filtered values
+        data["msg"]["sub_packet_1_data"]["values"]["latitude"] = trackers[name].getLat()
+        data["msg"]["sub_packet_1_data"]["values"]["longitude"] = trackers[name].getLong()
+        # print("data after filterting", data)

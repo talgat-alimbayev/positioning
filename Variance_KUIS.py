@@ -31,5 +31,5 @@ def variance(dir, which_coordinate):
 if __name__ == '__main__':
     #Just put r before your normal string it converts normal string to raw string:
     dir = r"C:\Users\tyalimbayev\OneDrive - ТОО Кар-тел\Рабочий стол\КУИС\Logs_variance"
-    variance("KUIS_logs", "latitude")
-    variance("KUIS_logs", "longitude")
+    variance("KUIS_logs_on_window_tracker_(used_for_variance)", "latitude")
+    variance("KUIS_logs_on_window_tracker_(used_for_variance)", "longitude")
