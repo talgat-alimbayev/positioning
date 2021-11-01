@@ -57,7 +57,10 @@ if __name__ == '__main__':
         f = open(os.path.join(dir, list[i]), "r")
         d = f.read()
         data = json.loads(d)
-        # print("data before filterting", data)
+        print("data before filterting", "device_imei: ", data["device_imei"],
+              "ts: ", data["msg"]["sub_packet_1_data"]["ts"],
+              "latitude: ", data["msg"]["sub_packet_1_data"]["values"]["latitude"],
+              "longitude: ", data["msg"]["sub_packet_1_data"]["values"]["longitude"])
         # the above code is not needed on the server
         name = data["device_imei"]
         latitude = data["msg"]["sub_packet_1_data"]["values"]["latitude"]
@@ -71,4 +74,7 @@ if __name__ == '__main__':
         # changing latitude and longitude for filtered values
         data["msg"]["sub_packet_1_data"]["values"]["latitude"] = trackers[name].getLat()
         data["msg"]["sub_packet_1_data"]["values"]["longitude"] = trackers[name].getLong()
-        # print("data after filterting", data)
+        print("data after filterting", "device_imei: ", data["device_imei"],
+              "ts: ", data["msg"]["sub_packet_1_data"]["ts"],
+              "latitude: ", data["msg"]["sub_packet_1_data"]["values"]["latitude"],
+              "longitude: ", data["msg"]["sub_packet_1_data"]["values"]["longitude"])
