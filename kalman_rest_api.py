@@ -9,9 +9,9 @@ trackers = {}
 def process_coordinates():
     data = request.get_json(force=True)
 
-    name = data["device_imei"]
-    latitude = data["msg"]["sub_packet_1_data"]["values"]["latitude"]
-    longitude = data["msg"]["sub_packet_1_data"]["values"]["longitude"]
+    name = data["id"]
+    latitude = data["latitude"]
+    longitude = data["longitude"]
 
     if name in trackers:
         trackers[name].setMeas(latitude, longitude)
@@ -20,8 +20,8 @@ def process_coordinates():
         trackers[name] = Tracker_KUIS(name, latitude, longitude)
 
     # changing latitude and longitude for filtered values
-    data["msg"]["sub_packet_1_data"]["values"]["latitude"] = trackers[name].getLat()
-    data["msg"]["sub_packet_1_data"]["values"]["longitude"] = trackers[name].getLong()
+    data["latitude"] = trackers[name].getLat()
+    data["longitude"] = trackers[name].getLong()
 
     return data
 app.run(debug=True)
