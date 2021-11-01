@@ -1,6 +1,6 @@
 import json
 from flask import Flask, request
-from Tracker_KUIS import Tracker_KUIS
+from Kalman_filter import Kalman_filter
 
 app = Flask(__name__)
 trackers = {}
@@ -17,7 +17,7 @@ def process_coordinates():
         trackers[name].setMeas(latitude, longitude)
         trackers[name].kalmanFilter()
     else:
-        trackers[name] = Tracker_KUIS(name, latitude, longitude)
+        trackers[name] = Kalman_filter(name, latitude, longitude)
 
     # changing latitude and longitude for filtered values
     data["latitude"] = trackers[name].getLat()
