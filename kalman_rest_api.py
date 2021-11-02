@@ -24,4 +24,10 @@ def process_coordinates():
     data["longitude"] = trackers[name].getLong()
 
     return data
+
+@app.route('/getDebugData', methods=['POST'])
+def getDebugData():
+    data = request.get_json(force=True)
+    return trackers[name].getDebug
+
 app.run(debug=True)

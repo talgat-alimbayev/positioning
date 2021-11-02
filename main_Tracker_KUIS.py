@@ -78,3 +78,4 @@ if __name__ == '__main__':
               "ts: ", data["msg"]["sub_packet_1_data"]["ts"],
               "latitude: ", data["msg"]["sub_packet_1_data"]["values"]["latitude"],
               "longitude: ", data["msg"]["sub_packet_1_data"]["values"]["longitude"])
+        print(trackers[name].getDebug())

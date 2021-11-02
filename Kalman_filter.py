@@ -16,6 +16,10 @@ class Kalman_filter:
         self.sigma_pred = np.array([[0, 0], [0, 0]]) #covariance of prediction
         self.K = np.array([[0, 0], [0, 0]])  # kalman gain
 
+        ### just for debugging
+        self.debug = []
+
+
     def getLat(self):
         return self.coord_est[0]
 
@@ -28,9 +32,16 @@ class Kalman_filter:
     def getMeas(self):
         return self.coord_meas
 
+    def getDebug(self):
+        return self.debug
+
     def kalmanFilter(self):
         self.coord_pred = self.coord_est
         self.sigma_pred = self.sigma_est + Kalman_filter.R
         self.K = self.sigma_pred @ inv(Kalman_filter.Q+self.sigma_pred)
         self.coord_est = self.coord_pred + self.K @ (self.coord_meas - self.coord_pred)
         self.sigma_est = (np.identity(2) - self.K) @ self.sigma_pred
+        self.debug.append({"id": self.id, "lat_long_meas": self.coord_meas,
+                           "lat_long_est": self.coord_est, "lat_long_pred": self.coord_pred,
+                           "kalman_gain": self.K, "sigma_pred": self.sigma_pred,
+                           "sigma_est": self.sigma_est})
