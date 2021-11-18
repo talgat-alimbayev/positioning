@@ -47,9 +47,12 @@ if __name__ == '__main__':
 
     plt.plot(x_axis, rssi_before_KF)
     plt.plot(x_axis, rssi_after_KF)
-    plt.legend(["RSSI before KF", "RSSI after KF"])
-    plt.title('RSSI readings from stationary beacon')
+    plt.legend(["RSSI перед фильтром", "RSSI после фильтра"])
+
+    plt.title("RSSI от стационарного трекера\n"+"R (процесса)=" +str(beacon_on_cabinet25.getR())+ ', Q (сигнала)='+ str(beacon_on_cabinet25.getQ()))
+    plt.ylabel("Y-axis \n with newline")
     plt.show()
+
 
 
 

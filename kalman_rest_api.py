@@ -28,6 +28,7 @@ def process_coordinates():
 @app.route('/getDebugData', methods=['POST'])
 def getDebugData():
     data = request.get_json(force=True)
-    return trackers[name].getDebug
+    name = data["id"]
+    return trackers[name].getDebug()
 
 app.run(debug=True)
