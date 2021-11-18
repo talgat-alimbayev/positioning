@@ -21,7 +21,7 @@ class Beacon_kalman:
         self.N = N #N is a path loss coefficient. The more obstacles there are, the larger it will be
         self.d = 0
 
-        self.rssi_est = 0
+        self.rssi_est = self.rssi_1m
         self.rssi_pred = 0
         self.sigma_est = 0  #covariance of estimation
         self.sigma_pred = 0 #covariance of prediction
