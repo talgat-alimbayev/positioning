@@ -27,15 +27,17 @@ if __name__ == '__main__':
             trackers[deviceName] = {}
 
 
-
+        # check for beacons that are not visible
         beacons_to_remove=[]
         for beacon_remove in trackers[deviceName]:
             if beacon_remove not in beacons:
                 beacons_to_remove.append(beacon_remove)
 
+        # remove the beacons that are not visible
         for key_to_remove in beacons_to_remove:
             del trackers[deviceName][key_to_remove]
 
+        # create beacons if they don't exist and perform kalman filtering
         for beacon in beacons:
             rssi_meas = data["beacons"][beacon]
             if beacon in trackers[deviceName]:
