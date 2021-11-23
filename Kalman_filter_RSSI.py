@@ -4,7 +4,7 @@ class Kalman_filter_RSSI:
     Q = 22  # found experimentally, check Variance.py and references above for more info
     R = 0.5  # middle ground between being sluggish and too noisy
     # R = 1 # try this model noise covariance if the model is too slow to respond to the tracker movement
-    def __init__(self, id, rssi_meas, deviceName, beacon):
+    def __init__(self, rssi_meas, deviceName, beacon):
 
         self.deviceName = deviceName
         self.beacon = beacon

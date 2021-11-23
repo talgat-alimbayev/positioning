@@ -5,11 +5,16 @@ trackers = {}
 def process_coordinates():
     data = request.get_json(force=True)
 
-    name = data["id"]
-    latitude = data["latitude"]
-    longitude = data["longitude"]
+    deviceName = data["deviceName"]
+    beacons = data["beaconList"]
 
-    if name in trackers:
+    if deviceName not in trackers:
+        trackers[deviceName] = {}
+
+    for beacon in beacons:
+        if 
+
+    if deviceName in trackers:
         trackers[name].setMeas(latitude, longitude)
         trackers[name].kalmanFilter()
     else:
