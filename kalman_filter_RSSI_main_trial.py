@@ -44,7 +44,6 @@ if __name__ == '__main__':
             else:
                 trackers[deviceName][beacon] = Kalman_filter_RSSI(rssi_meas, deviceName, beacon)
 
-        print(trackers)
 
             # print(beacon, trackers[deviceName][beacon].getRssiEst())
         # print(trackers)
