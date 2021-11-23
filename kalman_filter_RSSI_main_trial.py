@@ -27,6 +27,10 @@ if __name__ == '__main__':
             trackers[deviceName] = {}
 
 
+
+
+
+
         # check for beacons that are not visible
         beacons_to_remove=[]
         for beacon_remove in trackers[deviceName]:
