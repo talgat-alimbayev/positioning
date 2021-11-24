@@ -28,7 +28,7 @@ class Kalman_filter_RSSI:
     def setRssi(self, rssi_meas):
         self.rssi_meas = rssi_meas
 
-    def KalmanFilter(self):
+    def kalmanFilter(self):
         self.rssi_pred = self.rssi_est
         self.sigma_pred = self.sigma_est + Kalman_filter_RSSI.R
         self.K = self.sigma_pred / (self.sigma_pred + Kalman_filter_RSSI.Q)

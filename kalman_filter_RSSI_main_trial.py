@@ -1,8 +1,6 @@
 import os
 import json
-import matplotlib.pyplot as plt
 
-import numpy as np
 from Kalman_filter_RSSI import Kalman_filter_RSSI
 
 if __name__ == '__main__':
@@ -20,49 +18,27 @@ if __name__ == '__main__':
 
 
         deviceName = data["deviceName"]
-        beacons = data["beaconList"]
+        beacons = data["beaconList"] # list of beacons in the current message
 
-        # first check if tracker exists in the dictionary with trackers
+        # first check if tracker exists in the dictionary with trackers and create it if it doesn't
         if deviceName not in trackers:
             trackers[deviceName] = {}
-
-
-
-
-
-
-        # check for beacons that are not visible
-        beacons_to_remove=[]
-        for beacon_remove in trackers[deviceName]:
-            if beacon_remove not in beacons:
-                beacons_to_remove.append(beacon_remove)
-
-        # remove the beacons that are not visible
-        for key_to_remove in beacons_to_remove:
-            del trackers[deviceName][key_to_remove]
+        else:
+            beacons_in_memory = set(trackers[deviceName].keys()) # beacons in the memory from the previous
+                                                                 # message converted to a set
+            beacons_to_remove = beacons_in_memory.difference(beacons) # find beacons only present in the memory
+                                                                      # and not in the current message, i.e. effectively
+                                                                      # find beacons no longer in the range
+            for key_to_remove in beacons_to_remove:
+                del trackers[deviceName][key_to_remove]
 
         # create beacons if they don't exist and perform kalman filtering
         for beacon in beacons:
             rssi_meas = data["beacons"][beacon]
             if beacon in trackers[deviceName]:
                 trackers[deviceName][beacon].setRssi(rssi_meas)
-                trackers[deviceName][beacon].KalmanFilter()
+                trackers[deviceName][beacon].kalmanFilter()
             else:
                 trackers[deviceName][beacon] = Kalman_filter_RSSI(rssi_meas, deviceName, beacon)
 
-
-            # print(beacon, trackers[deviceName][beacon].getRssiEst())
-        # print(trackers)
-
-
-    # if deviceName in trackers:
-    #     trackers[name].setMeas(latitude, longitude)
-    #     trackers[name].kalmanFilter()
-    # else:
-    #     trackers[name] = Kalman_filter(name, latitude, longitude)
-    #
-    # # changing latitude and longitude for filtered values
-    # data["latitude"] = trackers[name].getLat()
-    # data["longitude"] = trackers[name].getLong()
-    #
-    # return data
+        print(trackers[deviceName].keys())
