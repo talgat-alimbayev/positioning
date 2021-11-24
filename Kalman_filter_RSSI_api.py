@@ -5,7 +5,7 @@ app = Flask(__name__)
 trackers_ble = {}
 
 @app.route('/filterRssi', methods=['POST'])
-def process_coordinates():
+def process_rssi():
     data = request.get_json(force=True)
 
     deviceName = data["deviceName"]
