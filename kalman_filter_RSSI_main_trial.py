@@ -7,7 +7,6 @@ if __name__ == '__main__':
 
     dir = r"C:\Users\tyalimbayev\OneDrive - ТОО Кар-тел\Рабочий стол\kalman_filter_RSSI"
     list = os.listdir(dir)
-    # print(list)
     N = len(list)  # number of json files
     trackers = {}
 

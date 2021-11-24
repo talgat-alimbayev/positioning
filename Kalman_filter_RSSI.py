@@ -1,5 +1,3 @@
-import numpy as np
-
 class Kalman_filter_RSSI:
     Q = 22  # found experimentally, check Variance.py and references above for more info
     R = 0.5  # middle ground between being sluggish and too noisy
