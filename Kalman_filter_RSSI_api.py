@@ -4,7 +4,7 @@ from Kalman_filter_RSSI import Kalman_filter_RSSI
 app = Flask(__name__)
 trackers = {}
 
-@app.route('/filterCoordinates', methods=['POST'])
+@app.route('/filterRssi', methods=['POST'])
 def process_coordinates():
     data = request.get_json(force=True)
 
